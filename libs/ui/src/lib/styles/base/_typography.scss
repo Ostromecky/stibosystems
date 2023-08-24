@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+
+@mixin typography($theme) {
+  $typography: map-get($theme, typography);
+  @include mat.typography-hierarchy($typography);
+
+  h1 {
+    @extend .mat-h1;
+  }
+
+  h2 {
+    @extend .mat-h2;
+  }
+
+  h3 {
+    @extend .mat-h3;
+  }
+
+  h4 {
+    @extend .mat-h4;
+  }
+
+  h5 {
+    @extend .mat-h5;
+  }
+
+  body {
+    @extend .mat-body;
+  }
+}

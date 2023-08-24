@@ -1,0 +1,13 @@
+@use 'theming';
+
+// @use 'utils/variables';
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  margin: 0;
+  // background: variables.$stb-primary;
+}
+
+@include theming.setup();

@@ -1,0 +1,37 @@
+// Media step breakpoint mixin based on Angular Material lib
+// https://material.angular.io/cdk/layout/overview
+
+$breakpoints: (
+  xs: '(max-width: 599.98px)',
+  sm: '(min-width: 600px) and (max-width: 959.98px)',
+  md: '(min-width: 960px) and (max-width: 1279.98px)',
+  lg: '(min-width: 1280px) and (max-width: 1919.98px)',
+  xl: '(min-width: 1920px)',
+  handset: '(max-width: 599.98px) and (orientation: portrait), (max-width: 959.98px) and (orientation: landscape)',
+  tablet: '(min-width: 600px) and (max-width: 839.98px) and (orientation: portrait), (min-width: 960px) and (max-width: 1279.98px) and (orientation: landscape)',
+  web: '(min-width: 840px) and (orientation: portrait), (min-width: 1280px) and (orientation: landscape)',
+  handset-portrait: '(max-width: 599.98px) and (orientation: portrait)',
+  tablet-portrait: '(min-width: 600px) and (max-width: 839.98px) and (orientation: portrait)',
+  web-portrait: '(min-width: 840px) and (orientation: portrait)',
+  handset-landscape: '(max-width: 959.98px) and (orientation: landscape)',
+  tablet-landscape: '(min-width: 960px) and (max-width: 1279.98px) and (orientation: landscape)',
+  web-landscape: '(min-width: 1280px) and (orientation: landscape)'
+  ) !default;
+
+// Re-map the breakpoints for the helper classes
+
+@mixin media-breakpoint($breakpointName) {
+
+  $mediaQuery: map-get($breakpoints, $breakpointName
+);
+
+@if ($mediaQuery ==null) {
+  @content
+}
+
+@else {
+  @media #{$mediaQuery} {
+    @content
+  }
+}
+}

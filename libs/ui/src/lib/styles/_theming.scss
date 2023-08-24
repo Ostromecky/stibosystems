@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+@use 'themes/theme';
+@use 'utils/variables';
+@use 'base/typography';
+@use 'components';
+@use 'pages';
+
+
+@mixin setup() {
+  @include mat.core();
+  $theme: theme.theme();
+
+  // Include all theme dependants.
+
+  @include mat.all-component-themes($theme);
+
+  @include typography.typography($theme);
+
+
+  // Components
+
+  @include components.sidenav();
+  @include components.notification();
+
+
+  // Pages
+
+  @include pages.auth();
+}

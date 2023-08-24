@@ -1,0 +1,19 @@
+@use 'utils/breakpoints' as bp;
+
+@mixin auth() {
+  .ray-auth {}
+
+  .auth-overlay-container {
+    max-width: 400px;
+    right: 0;
+    left: initial;
+
+    @include bp.media-breakpoint('xs') {
+      max-width: initial;
+    }
+
+    .cdk-overlay-pane {
+      width: 100%;
+    }
+  }
+}
