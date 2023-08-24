@@ -1,0 +1,52 @@
+<!-- <router-outlet></router-outlet> -->
+
+<mat-drawer-container>
+  <mat-drawer
+    class="ray-sidenav"
+    #snav
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile()"
+    [ngClass]="{ 'sidenav-collapsed': collapsed() && !isMobile() }"
+  >
+    <div class="sidenav-header">
+      <button
+        *ngIf="!isMobile()"
+        mat-icon-button
+        (click)="
+          isMobile() ? snav.toggle() : collapsed.set(!collapsed())
+        "
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="logo">
+        <!-- Logo Placeholder -->
+        <!-- <img class="logo-icon" src="/assets/images/plankton-logo-black.svg" /> -->
+      </div>
+      <button
+        mat-icon-button
+        class="toggle-sidebar-opened"
+        (click)="snav.toggle(false)"
+        *ngIf="isMobile()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <mat-nav-list>
+      <a
+        *ngFor="let item of navigation; trackBy: trackByFn"
+        mat-list-item
+        [routerLink]="item.url"
+        routerLinkActive="is-active"
+      >
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span *ngIf="!collapsed()">{{ item.title }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content
+    [ngClass]="{ 'sidenav-collapsed': collapsed() && !isMobile() }"
+  >
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

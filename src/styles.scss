@@ -1,0 +1,12 @@
+@use 'theming' as theming;
+// @use 'utils/variables';
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  margin: 0;
+  // background: variables.$ray-primary;
+}
+
+@include theming.setup();

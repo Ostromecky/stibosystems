@@ -1,0 +1,78 @@
+
+@import 'utils/variables';
+
+:host {
+  height: 100%;
+}
+
+mat-drawer-container {
+  height: 100%;
+}
+
+mat-drawer,
+mat-drawer-content,
+.logo img {
+  transition-duration: .4s;
+  transition-timing-function: cubic-bezier(.25, .8, .25, 1);
+}
+
+mat-drawer {
+  width: 250px;
+  transition-property: width;
+  border-radius: 0 30px 30px 0;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,.35);
+
+  &.sidenav-collapsed {
+    width: 100px;
+
+    .sidenav-header {
+      .logo {
+        img {
+          width: 0;
+        }
+      }
+    }
+  }
+
+  .sidenav-header {
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1.5em;
+    padding-right: 1em;
+    align-items: center;
+
+    .logo {
+      display: flex;
+      flex: 1 1 auto;
+      place-content: stretch center;
+
+      img {
+        transition-property: width;
+        width: 100px;
+        height: auto;
+      }
+    }
+  }
+
+  mat-nav-list {
+    a {
+      &.is-active {
+        background-color: $ray-primary !important;
+      }
+
+      mat-icon {
+        margin-right: 0.5em;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+mat-drawer-content {
+  transition-property: transform, margin-left, margin-right;
+
+  &.sidenav-collapsed {
+    margin-left: 100px !important;
+  }
+}
