@@ -21,16 +21,7 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript", "plugin:@nrwl/nx/angular"],
-      "parserOptions": {
-        "project": "./tsconfig.*?.json"
-      },
-      "rules": {
-        "no-empty-function": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-empty-function": "off",
-        "@angular-eslint/no-empty-lifecycle-method": "off"
-      }
+      "rules": {}
     },
     {
       "files": ["*.js", "*.jsx"],
@@ -41,11 +32,6 @@
       "env": {
         "jest": true
       },
-      "rules": {}
-    },
-    {
-      "files": ["*.html"],
-      "extends": ["plugin:@nrwl/nx/angular-template"],
       "rules": {}
     }
   ],
