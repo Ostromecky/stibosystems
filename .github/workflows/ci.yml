@@ -35,7 +35,7 @@ jobs:
       - run: npm ci --cache .npm --prefer-offline --legacy-peer-deps
 
       - run: npx nx format:check
-      - run: npx nx affected -t build --prod --base-href=/stibosystems/ && cp dist/stibosystems/index.html dist/stibosystems/404.html --parallel=3
+      - run: npx nx affected -t build --prod --base-href=/stibosystems/ --parallel=3 && cp dist/stibosystems/index.html dist/stibosystems/404.html
 
       - name: Upload Artifact
         uses: actions/upload-artifact@master
