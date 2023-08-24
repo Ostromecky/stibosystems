@@ -39,9 +39,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: sandbox-artifact
+          name: stibosystems-artifact
           path: dist/stibosystems
-          if-no-files-found: error
 
   deploy:
     needs: build
@@ -55,7 +54,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: sandbox-artifact
+          name: stibosystems-artifact
           path: .
 
       - name: Setup Pages
