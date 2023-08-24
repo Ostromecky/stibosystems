@@ -64,10 +64,10 @@ export class SidenavComponent implements SidenavController {
   navigation: Navigation[] = [
     {
       id: 'projects',
-      title: 'Projects',
+      title: 'Payments',
       translate: 'Navbar.Projects',
       type: 'item',
-      icon: 'folder',
+      icon: 'payments',
       url: '/projects',
     },
     {
@@ -77,6 +77,14 @@ export class SidenavComponent implements SidenavController {
       type: 'item',
       icon: 'people',
       url: '/users',
+    },
+    {
+      id: 'countries',
+      title: 'Countries',
+      translate: 'Navigation.Countries',
+      type: 'item',
+      icon: 'public',
+      url: '/countries',
     },
   ];
 
