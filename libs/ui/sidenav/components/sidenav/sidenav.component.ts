@@ -68,7 +68,7 @@ export class SidenavComponent implements SidenavController {
       translate: 'Navbar.Projects',
       type: 'item',
       icon: 'payments',
-      url: '/projects',
+      url: '/payments',
     },
     {
       id: 'users',
