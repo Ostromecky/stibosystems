@@ -1,7 +1,8 @@
 @use 'utils/breakpoints' as bp;
 
 @mixin auth() {
-  .ray-auth {}
+  .ray-auth {
+  }
 
   .auth-overlay-container {
     max-width: 400px;

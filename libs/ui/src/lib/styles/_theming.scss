@@ -5,7 +5,6 @@
 @use 'components';
 @use 'pages';
 
-
 @mixin setup() {
   @include mat.core();
   $theme: theme.theme();
@@ -16,12 +15,10 @@
 
   @include typography.typography($theme);
 
-
   // Components
 
   @include components.sidenav();
   @include components.notification();
-
 
   // Pages
 

@@ -1,15 +1,8 @@
 {
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -19,9 +12,7 @@
             "depConstraints": [
               {
                 "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }
@@ -29,14 +20,8 @@
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/typescript",
-        "plugin:@nrwl/nx/angular"
-      ],
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript", "plugin:@nrwl/nx/angular"],
       "parserOptions": {
         "project": "./tsconfig.*?.json"
       },
@@ -48,35 +33,21 @@
       }
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.js", "*.jsx"],
       "rules": {}
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
         "jest": true
       },
       "rules": {}
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@nrwl/nx/angular-template"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@nrwl/nx/angular-template"],
       "rules": {}
     }
   ],
-  "extends": [
-    "./.eslintrc.base.json"
-  ]
+  "extends": ["./.eslintrc.base.json"]
 }

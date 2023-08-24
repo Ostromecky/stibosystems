@@ -6,8 +6,6 @@
   </ng-container>
 
   <ng-container *ngFor="let col of columns">
-
-    
     <ng-container [matColumnDef]="col">
       <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
       <td mat-cell *matCellDef="let element">{{ element[col] }}</td>

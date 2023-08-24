@@ -16,10 +16,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@stibosystems/ui/*": ["libs/ui/*"],
       "@stibosystems/payments/feature-payments": [
         "libs/payments/feature-payments/src/index.ts"
-      ]
+      ],
+      "@stibosystems/ui/*": ["libs/ui/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
