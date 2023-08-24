@@ -3,6 +3,6 @@
 
 $theme: theme.theme();
 
-$ray-primary: mat-color(map-get($theme, primary));
-$ray-accent: mat-color(map-get($theme, accent));
-$ray-warn: mat-color(map-get($theme, warn));
+$stb-primary: mat-color(map-get($theme, primary));
+$stb-accent: mat-color(map-get($theme, accent));
+$stb-warn: mat-color(map-get($theme, warn));

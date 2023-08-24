@@ -12,9 +12,7 @@
       <button
         *ngIf="!isMobile()"
         mat-icon-button
-        (click)="
-          isMobile() ? snav.toggle() : collapsed.set(!collapsed())
-        "
+        (click)="isMobile() ? snav.toggle() : collapsed.set(!collapsed())"
       >
         <mat-icon>menu</mat-icon>
       </button>

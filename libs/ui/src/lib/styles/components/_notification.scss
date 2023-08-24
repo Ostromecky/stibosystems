@@ -7,7 +7,7 @@
 
   .mat-mdc-snack-bar-container {
     &.ray-error {
-      --mdc-snackbar-container-color: #{$ray-warn};
+      --mdc-snackbar-container-color: #{$stb-warn};
       // --mat-mdc-snack-bar-button-color: #fff;
       // --mdc-snackbar-supporting-text-color: #fff;
     }

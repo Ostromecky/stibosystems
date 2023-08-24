@@ -1,5 +1,5 @@
 
-@import 'utils/variables';
+@import '../../../src/lib/styles/utils/variables';
 
 :host {
   height: 100%;
@@ -57,7 +57,16 @@ mat-drawer {
   mat-nav-list {
     a {
       &.is-active {
-        background-color: $ray-primary !important;
+        background-color: $stb-primary;
+
+        span {
+          color: white;
+        }
+
+        mat-icon {
+          color: white;
+        }
+        
       }
 
       mat-icon {
