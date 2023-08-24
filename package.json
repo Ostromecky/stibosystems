@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "nx build",
+    "build": "nx build --prod --base-href /sandbox/ && cp dist/sandbox/index.html dist/sandbox/404.html",
     "test": "nx test"
   },
   "private": true,
