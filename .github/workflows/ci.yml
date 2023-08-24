@@ -23,18 +23,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v3
+        # with:
+        #   node-version: '18'
+        #   cache: 'npm'
+        #   cache-dependency-path: 'package-lock.json'
 
-      - name: Install dependencies
-        run: npm ci --cache .npm --prefer-offline --legacy-peer-deps
+      - run: npm ci --cache .npm --prefer-offline --legacy-peer-deps
 
-      - name: Build App
-        run: npm run build --if-present
+      - run: npx nx format:check
+      - run: npx nx affected -t lint --parallel=3
+      - run: npx nx affected -t build --prod --base-href=/stibosystems/ && cp dist/stibosystems/index.html dist/stibosystems/404.html --parallel=3
 
       - name: Upload Artifact
         uses: actions/upload-artifact@master
