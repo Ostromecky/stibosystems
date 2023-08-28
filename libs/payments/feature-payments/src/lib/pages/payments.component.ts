@@ -1,14 +1,22 @@
+import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TableComponent } from '@stibosystems/ui/table';
+import { ColumnComponent, TableComponent } from '@stibosystems/ui/table';
+
+export interface IData {
+  position: number;
+  name: string;
+  weight: number;
+  symbol: string;
+}
 @Component({
   selector: 'app-payments',
   templateUrl: 'payments.component.html',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, ColumnComponent, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentsComponent {
-  ELEMENT_DATA = [
+  ELEMENT_DATA: IData[] = [
     { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
     { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
     { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
@@ -20,5 +28,5 @@ export class PaymentsComponent {
     { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
     { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
   ];
-  columns: string[] = ['position', 'name', 'weight', 'symbol'];
+  columns: string[] = ['select', 'position', 'name', 'weight'];
 }

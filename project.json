@@ -24,6 +24,10 @@
       },
       "configurations": {
         "production": {
+          "buildOptimizer": true,
+          "aot": true,
+          "optimization": true,
+          "namedChunks": false,
           "budgets": [
             {
               "type": "initial",
@@ -36,7 +40,13 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "src/environments/environment.ts",
+              "with": "src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
