@@ -10,5 +10,5 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     importProvidersFrom(BrowserAnimationsModule),
-  ],
+  ]
 };

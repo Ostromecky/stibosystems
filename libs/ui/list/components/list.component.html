@@ -1,0 +1,17 @@
+<mat-selection-list>
+  <mat-list-option
+    *ngFor="let item of data; let index = index"
+    togglePosition="before"
+  >
+    <div matLine>
+      {{ item.title }}
+    </div>
+
+    <ng-container
+      [ngTemplateOutlet]="itemRef.templateRef"
+      [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+    />
+    <!-- <div matLine>{{ite\m}}</div> -->
+    <!-- <img matListAvatar src="" /> -->
+  </mat-list-option>
+</mat-selection-list>

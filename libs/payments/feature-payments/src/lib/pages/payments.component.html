@@ -1,8 +1,16 @@
-<app-table [data]="ELEMENT_DATA" [columns]="columns">
-  <app-column label="Name" column="name"></app-column>
+<app-list [data]="ELEMENT_DATA">
+  <!-- <app-column label="Name" column="name"></app-column>
   <app-column label="Weight" column="weight">
     <ng-template let-col let-weight="row">
       <strong>{{ weight[col] }}</strong>
     </ng-template>
-  </app-column>
-</app-table>
+  </app-column> -->
+
+  <ng-container *appItem="let item; let idx = index; list: ELEMENT_DATA">
+    {{ item.data.weight }}
+  </ng-container>
+  <!-- 
+    <ng-container *appItem="let item">
+      {{item}}
+    </ng-container> -->
+</app-list>

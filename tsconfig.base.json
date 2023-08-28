@@ -19,7 +19,8 @@
       "@stibosystems/payments/feature-payments": [
         "libs/payments/feature-payments/src/index.ts"
       ],
-      "@stibosystems/ui/*": ["libs/ui/*"]
+      "@stibosystems/ui/*": ["libs/ui/*"],
+      "@stibosystems/utils/template-outlet": ["libs/utils/template-outlet/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
