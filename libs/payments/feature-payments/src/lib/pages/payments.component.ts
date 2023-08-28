@@ -1,10 +1,11 @@
+import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TableComponent } from '@stibosystems/ui/table';
+import { ColumnComponent, TableComponent } from '@stibosystems/ui/table';
 @Component({
   selector: 'app-payments',
   templateUrl: 'payments.component.html',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, ColumnComponent, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentsComponent {
@@ -20,5 +21,5 @@ export class PaymentsComponent {
     { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
     { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
   ];
-  columns: string[] = ['position', 'name', 'weight', 'symbol'];
+  columns: string[] = ['name', 'weight'];
 }
