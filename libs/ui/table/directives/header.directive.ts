@@ -5,9 +5,9 @@ import { ColumnComponent } from '../components/column/column.component';
   selector: '[appHeader]',
   standalone: true
 })
-export class HeaderDirective {
+export class HeaderDirective<T> {
 
-  constructor(public templateRef: TemplateRef<unknown>, columnComponent: ColumnComponent) {
+  constructor(public templateRef: TemplateRef<unknown>, columnComponent: ColumnComponent<T>) {
     columnComponent.headerRef = templateRef;
   }
 

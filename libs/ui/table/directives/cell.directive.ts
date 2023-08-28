@@ -3,12 +3,15 @@ import { ColumnComponent } from '../components/column/column.component';
 
 @Directive({
   selector: '[appCell]',
-  standalone: true
+  standalone: true,
 })
-export class CellDirective {
-
-  constructor(public templateRef: TemplateRef<unknown>, columnComponent: ColumnComponent) {
+export class CellDirective<T> {
+  constructor(
+    public templateRef: TemplateRef<{
+      $implicit: T;
+    }>,
+    columnComponent: ColumnComponent<T>
+  ) {
     columnComponent.cellRef = templateRef;
   }
-
 }

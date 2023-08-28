@@ -16,9 +16,9 @@ import { HeaderDirective } from '../../directives/header.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgIf, NgTemplateOutlet, HeaderDirective, CellDirective],
 })
-export class ColumnComponent {
+export class ColumnComponent<T> {
   @ContentChild(TemplateRef, { static: false })
-  templateRef!: TemplateRef<unknown>;
+  templateRef!: TemplateRef<{$implicit: string, row: T}>;
   cellRef!: TemplateRef<unknown>;
   headerRef!: TemplateRef<unknown>;
   @Input() label!: string;

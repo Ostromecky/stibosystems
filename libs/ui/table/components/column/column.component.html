@@ -2,7 +2,7 @@
   <th>{{ label }}</th>
 </ng-template>
 
-<ng-template appCell let-row>
+<ng-container *appCell="let row" >
   <td [attr.label]="label">
     <ng-container *ngIf="templateRef; else defaultTemplate">
       <ng-container
@@ -14,4 +14,4 @@
       {{ row[column] }}
     </ng-template>
   </td>
-</ng-template>
+</ng-container>
