@@ -1,50 +1,50 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { NgFor, NgTemplateOutlet } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
+  ContentChild,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  QueryList,
 } from '@angular/core';
-import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTableModule } from '@angular/material/table';
-import { ColumnComponent } from './column/column.component';
-import { SelectionModel } from '@angular/cdk/collections';
+import {
+  MatCheckboxChange,
+  MatCheckboxModule,
+} from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { ItemDirective } from '../public_api';
+import { ListItem } from '../types';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: 'table.component.html',
+  selector: 'app-list',
+  templateUrl: 'list.component.html',
   standalone: true,
   imports: [
-    MatTableModule,
     NgFor,
     NgTemplateOutlet,
-    ColumnComponent,
-    MatCheckboxModule
+    MatListModule,
+    MatCheckboxModule,
+    MatIconModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent<T> implements OnInit, AfterViewInit {
-  @Input() data!: T[];
-  @Input() columns!: string[];
+export class ListComponent<T> implements OnInit {
+  @Input() data!: ListItem<T>[];
 
-  @Output() selected: EventEmitter<T[]> = new EventEmitter<T[]>();
+  @Output() selected: EventEmitter<ListItem<T>[]> = new EventEmitter<
+    ListItem<T>[]
+  >();
 
-  @ContentChildren(ColumnComponent<T>, { descendants: true })
-  columnComponents!: QueryList<ColumnComponent<T>>;
+  @ContentChild(ItemDirective, { descendants: true })
+  itemRef!: ItemDirective<T>;
 
-  selection = new SelectionModel<T>(true, []);
+  selection = new SelectionModel<ListItem<T>>(true, []);
 
   ngOnInit() {
     console.log(this.data);
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.columnComponents);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -61,7 +61,7 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
       : this.data.forEach((row) => this.selection.select(row));
   }
 
-  handleSelection(event: MatCheckboxChange, row: T) {
+  handleSelection(event: MatCheckboxChange, row: ListItem<T>) {
     event ? this.selection.toggle(row) : null;
     this.selected.emit(this.selection.selected);
   }

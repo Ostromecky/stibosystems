@@ -19,6 +19,7 @@
 
   @include components.sidenav();
   @include components.notification();
+  @include components.list($theme);
 
   // Pages
 

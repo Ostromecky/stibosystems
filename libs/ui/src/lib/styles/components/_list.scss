@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+@mixin list($theme) {
+
+  $bg-lighter: get-color($theme, 'primary', 'lighter');
+
+  .app-list {
+    .mdc-list-item[aria-selected="true"] {
+      background: $bg-lighter;
+    }
+
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      [meta] {
+        @extend .mat-small;
+      }
+
+      [avatar] {
+        overflow: hidden;
+
+        img {
+          object-fit: contain;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+
+@function get-color($theme, $palette, $hue: 'default') {
+  $color-config: mat.get-color-config($theme);
+  $p: map.get($color-config, $palette);
+  @return mat.get-color-from-palette($p, $hue);
+}

@@ -1,0 +1,12 @@
+<mat-selection-list class="app-list">
+  <mat-list-option
+    color="primary"
+    *ngFor="let item of data; let index = index"
+    togglePosition="before"
+  >
+    <ng-container
+      [ngTemplateOutlet]="itemRef.templateRef"
+      [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+    />
+  </mat-list-option>
+</mat-selection-list>

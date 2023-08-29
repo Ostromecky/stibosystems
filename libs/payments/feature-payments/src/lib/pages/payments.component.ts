@@ -1,10 +1,12 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ColumnComponent, TableComponent } from '@stibosystems/ui/table';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  ItemDirective,
+  ListComponent
+} from '@stibosystems/ui/list';
+import { ListItem } from '@stibosystems/ui/list/types';
 
 export interface IData {
-  position: number;
-  name: string;
   weight: number;
   symbol: string;
 }
@@ -12,21 +14,19 @@ export interface IData {
   selector: 'app-payments',
   templateUrl: 'payments.component.html',
   standalone: true,
-  imports: [TableComponent, ColumnComponent, JsonPipe],
+  imports: [ListComponent, ItemDirective, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentsComponent {
-  ELEMENT_DATA: IData[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  ELEMENT_DATA: ListItem<IData>[] = [
+    { title: 'Helium', data: { weight: 4.0026, symbol: 'He' } },
+    { title: 'Lithium', data: { weight: 6.941, symbol: 'Li' } },
+    { title: 'Beryllium', data: { weight: 9.0122, symbol: 'Be' } },
+    { title: 'Boron', data: { weight: 10.811, symbol: 'B' } },
+    { title: 'Carbon', data: { weight: 12.0107, symbol: 'C' } },
+    { title: 'Nitrogen', data: { weight: 14.0067, symbol: 'N' } },
+    { title: 'Oxygen', data: { weight: 15.9994, symbol: 'O' } },
+    { title: 'Fluorine', data: { weight: 18.9984, symbol: 'F' } },
+    { title: 'Neon', data: { weight: 20.1797, symbol: 'Ne' } },
   ];
-  columns: string[] = ['select', 'position', 'name', 'weight'];
 }
