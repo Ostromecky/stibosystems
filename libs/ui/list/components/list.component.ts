@@ -6,15 +6,14 @@ import {
   ContentChild,
   EventEmitter,
   Input,
-  OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import {
   MatCheckboxChange,
   MatCheckboxModule,
 } from '@angular/material/checkbox';
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { ItemDirective } from '../public_api';
 import { ListItem } from '../types';
 
@@ -31,7 +30,7 @@ import { ListItem } from '../types';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListComponent<T> implements OnInit {
+export class ListComponent<T> {
   @Input() data!: ListItem<T>[];
 
   @Output() selected: EventEmitter<ListItem<T>[]> = new EventEmitter<
@@ -42,10 +41,6 @@ export class ListComponent<T> implements OnInit {
   itemRef!: ItemDirective<T>;
 
   selection = new SelectionModel<ListItem<T>>(true, []);
-
-  ngOnInit() {
-    console.log(this.data);
-  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {

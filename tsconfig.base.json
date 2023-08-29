@@ -20,7 +20,10 @@
         "libs/payments/feature-payments/src/index.ts"
       ],
       "@stibosystems/ui/*": ["libs/ui/*"],
-      "@stibosystems/utils/template-outlet": ["libs/utils/template-outlet/src/index.ts"]
+      "@stibosystems/utils/template-outlet": [
+        "libs/utils/template-outlet/src/index.ts"
+      ],
+      "@stibosystems/payments/data-access": ["libs/payments/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

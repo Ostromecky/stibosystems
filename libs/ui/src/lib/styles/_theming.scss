@@ -20,6 +20,7 @@
   @include components.sidenav();
   @include components.notification();
   @include components.list($theme);
+  @include components.card();
 
   // Pages
 
