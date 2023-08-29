@@ -1,16 +1,12 @@
 <app-list [data]="ELEMENT_DATA">
-  <!-- <app-column label="Name" column="name"></app-column>
-  <app-column label="Weight" column="weight">
-    <ng-template let-col let-weight="row">
-      <strong>{{ weight[col] }}</strong>
-    </ng-template>
-  </app-column> -->
-
   <ng-container *appItem="let item; let idx = index; list: ELEMENT_DATA">
-    {{ item.data.weight }}
+    <div class="app-list__item">
+      <div title>{{ item.title }}</div>
+
+      <div meta>
+        <!-- {{ item.data.weight }} -->
+        <!-- <mat-icon>person</mat-icon> -->
+      </div>
+    </div>
   </ng-container>
-  <!-- 
-    <ng-container *appItem="let item">
-      {{item}}
-    </ng-container> -->
 </app-list>

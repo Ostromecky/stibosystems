@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import {
   ItemDirective,
   ListComponent
@@ -13,7 +14,7 @@ export interface IData {
   selector: 'app-payments',
   templateUrl: 'payments.component.html',
   standalone: true,
-  imports: [ListComponent, ItemDirective],
+  imports: [ListComponent, ItemDirective, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentsComponent {

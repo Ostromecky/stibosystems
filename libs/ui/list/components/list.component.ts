@@ -14,6 +14,7 @@ import {
   MatCheckboxModule,
 } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 import { ItemDirective } from '../public_api';
 import { ListItem } from '../types';
 
@@ -26,6 +27,7 @@ import { ListItem } from '../types';
     NgTemplateOutlet,
     MatListModule,
     MatCheckboxModule,
+    MatIconModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
