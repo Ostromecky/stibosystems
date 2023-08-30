@@ -1,5 +1,5 @@
 {
-  "name": "payments/feature-payments",
+  "name": "@stibosystems/payments/feature-payments",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^16.2.0",

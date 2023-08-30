@@ -8,11 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 import { ItemDirective, ListComponent } from '@stibosystems/ui/list';
-import { PaymentsFacade } from './payments.facade';
+import { CountriesFacade } from './countries.facade';
+
 @Component({
-  selector: 'app-payments',
-  templateUrl: 'payments.component.html',
-  styleUrls: ['./payments.component.scss'],
+  selector: 'app-countries',
   standalone: true,
   imports: [
     ListComponent,
@@ -26,11 +25,13 @@ import { PaymentsFacade } from './payments.facade';
     TranslocoDirective,
     NgFor,
     TranslocoPipe,
-    NgIf
+    NgIf,
   ],
-  providers: [PaymentsFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [CountriesFacade],
+  templateUrl: './countries.component.html',
+  styleUrls: ['./countries.component.scss'],
 })
-export class PaymentsComponent {
-  protected readonly _facade = inject(PaymentsFacade);
+export class CountriesComponent {
+  protected readonly _facade = inject(CountriesFacade);
 }

@@ -5,7 +5,7 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { provideTranslate } from 'utils/translate';
+import { provideTranslate } from '@stibosystems/utils/translate';
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
