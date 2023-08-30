@@ -1,5 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import {
   PaymentFilter,
   PaymentItem,
@@ -13,6 +14,7 @@ import { StatusItem } from '../types';
 @Injectable()
 export class PaymentsFacade {
   private readonly _paymentsService = inject(PaymentsService);
+  // private readonly scope = inject(TRANSLOCO_SCOPE);
   readonly $filter = signal<PaymentStatus | null>(null);
   readonly statusList = this.toStatusList();
 
@@ -23,7 +25,6 @@ export class PaymentsFacade {
         const params = {
           status: filter,
         } as PaymentFilter;
-        console.log(params);
         return this._paymentsService.getPayments(params);
       }),
       map((res) => res.map(this.toListItem))
@@ -37,11 +38,11 @@ export class PaymentsFacade {
 
   private toStatusList(): StatusItem[] {
     return [
-      { value: PaymentStatus.WRONG_PAYSLIP, viewValue: 'Wrong Payslio' },
-      { value: PaymentStatus.SUCCESSFUL, viewValue: 'Delivery Successful' },
-      { value: PaymentStatus.DECLINED, viewValue: 'Delivery Declined' },
-      { value: PaymentStatus.WRONG_ADDRESS, viewValue: 'Wrong Address' },
-      { value: PaymentStatus.DELIVERY_ERROR, viewValue: 'Delivery Error' },
+      { value: PaymentStatus.WRONG_PAYSLIP, viewValue: 'payments.status.wrong_payslip' },
+      { value: PaymentStatus.SUCCESSFUL, viewValue: 'payments.status.successful' },
+      { value: PaymentStatus.DECLINED, viewValue: 'payments.status.declined' },
+      { value: PaymentStatus.WRONG_ADDRESS, viewValue: 'payments.status.wrong_address' },
+      { value: PaymentStatus.DELIVERY_ERROR, viewValue: 'payments.status.delivery_error' },
     ];
   }
 }

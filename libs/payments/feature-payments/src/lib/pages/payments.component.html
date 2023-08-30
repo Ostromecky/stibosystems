@@ -23,7 +23,6 @@
         >
           <mat-icon>close</mat-icon>
         </button>
-        <!-- <mat-icon matSuffix>close</mat-icon> -->
         <mat-label>Search payments</mat-label>
         <mat-select
           [ngModel]="_facade.$filter()"
@@ -33,7 +32,7 @@
             *ngFor="let status of _facade.statusList"
             [value]="status.value"
           >
-            {{ status.viewValue }}
+            {{ status.viewValue | transloco }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -46,7 +45,7 @@
         *appItem="let item; let idx = index; list: _facade.$payments()"
       >
         <div class="app-list__item">
-          <div title>{{ item.title }}</div>
+          <div title>{{ 'payments.status.' + item.title | transloco }}</div>
 
           <div meta>
             {{ item.data.count }}

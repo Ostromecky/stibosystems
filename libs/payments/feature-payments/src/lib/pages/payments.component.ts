@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ItemDirective, ListComponent } from '@stibosystems/ui/list';
 import { PaymentsFacade } from './payments.facade';
 import { NgFor, NgIf } from '@angular/common';
+import { TRANSLOCO_SCOPE, TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 @Component({
   selector: 'app-payments',
   templateUrl: 'payments.component.html',
@@ -22,7 +23,9 @@ import { NgFor, NgIf } from '@angular/common';
     MatButtonModule,
     FormsModule,
     MatSelectModule,
+    TranslocoDirective,
     NgFor,
+    TranslocoPipe,
     NgIf
   ],
   providers: [PaymentsFacade],

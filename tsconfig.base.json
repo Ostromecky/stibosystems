@@ -16,6 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@stibosystems/payments/data-access": [
+        "libs/payments/data-access/src/index.ts"
+      ],
       "@stibosystems/payments/feature-payments": [
         "libs/payments/feature-payments/src/index.ts"
       ],
@@ -23,7 +26,7 @@
       "@stibosystems/utils/template-outlet": [
         "libs/utils/template-outlet/src/index.ts"
       ],
-      "@stibosystems/payments/data-access": ["libs/payments/data-access/src/index.ts"]
+      "utils/translate": ["libs/utils/translate/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
