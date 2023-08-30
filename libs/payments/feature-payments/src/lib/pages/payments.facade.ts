@@ -1,6 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
 import {
   PaymentFilter,
   PaymentItem,
@@ -14,7 +13,6 @@ import { StatusItem } from '../types';
 @Injectable()
 export class PaymentsFacade {
   private readonly _paymentsService = inject(PaymentsService);
-  // private readonly scope = inject(TRANSLOCO_SCOPE);
   readonly $filter = signal<PaymentStatus | null>(null);
   readonly statusList = this.toStatusList();
 

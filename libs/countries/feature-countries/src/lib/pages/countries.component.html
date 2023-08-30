@@ -1,32 +1,17 @@
-<!-- <p>countries-feature-countries works!</p>
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <h1>Manage Payments</h1>
+      <h1>Manage Countries</h1>
     </mat-card-title>
     <mat-card-subtitle>
-      <mat-form-field class="payments__filter">
+      <mat-form-field class="countries__filter">
         <mat-icon matPrefix>search</mat-icon>
-        <button
-          matSuffix
-          mat-icon-button
-          *ngIf="_facade.$filter()"
-          (click)="_facade.$filter.set(null); $event.stopPropagation()"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-        <mat-label>Search payments</mat-label>
-        <mat-select
+        <mat-label>Search countries</mat-label>
+        <input
           [ngModel]="_facade.$filter()"
           (ngModelChange)="_facade.$filter.set($event)"
-        >
-          <mat-option
-            *ngFor="let status of _facade.statusList"
-            [value]="status.value"
-          >
-            {{ status.viewValue | transloco }}
-          </mat-option>
-        </mat-select>
+          matInput
+        />
       </mat-form-field>
     </mat-card-subtitle>
   </mat-card-header>
@@ -37,16 +22,16 @@
         *appItem="let item; let idx = index; list: _facade.$payments()"
       >
         <div class="app-list__item">
-          <div title>{{ 'payments.status.' + item.title | transloco }}</div>
+          <div title>
+            <div>{{ item.title }}</div>
+            <div>{{ item.data.code }}</div>
+          </div>
 
           <div meta>
-            {{ item.data.count }}
+            <!-- {{ item.data.count }} -->
           </div>
         </div>
       </ng-container>
     </app-list>
   </mat-card-content>
-</mat-card> -->
-
-
-Countries works
+</mat-card>
