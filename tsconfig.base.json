@@ -26,6 +26,9 @@
       "@stibosystems/utils/template-outlet": [
         "libs/utils/template-outlet/src/index.ts"
       ],
+      "@stibosystems/countries/feature-countries": [
+        "libs/countries/feature-countries/src/index.ts"
+      ],
       "utils/translate": ["libs/utils/translate/src/index.ts"]
     }
   },

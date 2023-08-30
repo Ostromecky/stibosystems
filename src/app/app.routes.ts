@@ -13,6 +13,13 @@ export const appRoutes: Route[] = [
             (m) => m.PAYMENTS_ROUTES
           ),
       },
+      {
+        path: 'countries',
+        loadChildren: () =>
+          import('@stibosystems/countries/feature-countries').then(
+            (m) => m.COUNTRIES_ROUTES
+          ),
+      },
     ],
   },
   {
