@@ -1,17 +1,8 @@
-:host {
-  display: block;
-  height: 64px;
-}
-
 .toolbar {
+  height: 64px;
   z-index: 1;
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
   right: 0;
-}
-
-.navbar-toggle-button {
-  min-width: 56px;
-  height: 56px;
 }
