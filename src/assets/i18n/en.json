@@ -1,0 +1,11 @@
+{
+  "payments": {
+    "status": {
+      "wrong_payslip": "Wrong Payslip",
+      "wrong_address": "Wrong Address",
+      "delivery_error": "Delivery Error",
+      "successful": "Delivery Successful",
+      "declined": "Delivery Declined"
+    }
+  }
+}

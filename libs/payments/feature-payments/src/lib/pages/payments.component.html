@@ -1,12 +1,57 @@
-<app-list [data]="ELEMENT_DATA">
-  <ng-container *appItem="let item; let idx = index; list: ELEMENT_DATA">
-    <div class="app-list__item">
-      <div title>{{ item.title }}</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Manage Payments</h1>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <!-- <mat-form-field class="payments__filter">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Search payments</mat-label>
+        <input
+          [ngModel]="_facade.$filter()"
+          (ngModelChange)="_facade.$filter.set($event)"
+          matInput
+        />
+      </mat-form-field> -->
+      <mat-form-field class="payments__filter">
+        <mat-icon matPrefix>search</mat-icon>
+        <button
+          matSuffix
+          mat-icon-button
+          *ngIf="_facade.$filter()"
+          (click)="_facade.$filter.set(null); $event.stopPropagation()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-label>Search payments</mat-label>
+        <mat-select
+          [ngModel]="_facade.$filter()"
+          (ngModelChange)="_facade.$filter.set($event)"
+        >
+          <mat-option
+            *ngFor="let status of _facade.statusList"
+            [value]="status.value"
+          >
+            {{ status.viewValue | transloco }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-subtitle>
+  </mat-card-header>
 
-      <div meta>
-        <!-- {{ item.data.weight }} -->
-        <!-- <mat-icon>person</mat-icon> -->
-      </div>
-    </div>
-  </ng-container>
-</app-list>
+  <mat-card-content class="payments__content">
+    <app-list [data]="_facade.$payments()">
+      <ng-container
+        *appItem="let item; let idx = index; list: _facade.$payments()"
+      >
+        <div class="app-list__item">
+          <div title>{{ 'payments.status.' + item.title | transloco }}</div>
+
+          <div meta>
+            {{ item.data.count }}
+          </div>
+        </div>
+      </ng-container>
+    </app-list>
+  </mat-card-content>
+</mat-card>
