@@ -22,6 +22,7 @@
       [lastLoaded]="_facade.$end()"
       [loading]="_facade.$loading()"
       (pageChange)="handlePageChange()"
+      (selected)="handleSelection($event)"
     >
       <ng-container
         *appItem="let item; let idx = index; list: _facade.$users()"

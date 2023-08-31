@@ -18,6 +18,7 @@ import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { ItemDirective } from '../public_api';
 import { ListItem } from '../types';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-list',
@@ -43,6 +44,8 @@ export class ListComponent<T> {
   @Input() lastLoaded = false;
   @Input() loading = false;
 
+  selection = new SelectionModel(true);
+
   @Output() selected: EventEmitter<ListItem<T>[]> = new EventEmitter<
     ListItem<T>[]
   >();
@@ -54,8 +57,12 @@ export class ListComponent<T> {
   @ContentChild(ItemDirective, { descendants: true })
   itemRef!: ItemDirective<T>;
 
-  handleSelection(event: MatSelectionListChange) {
-    console.log(event.options);
+  handleSelection(selection: MatSelectionListChange) {
+    selection.options[0].selected
+      ? this.selection.select(selection.options[0].value)
+      : this.selection.deselect(selection.options[0].value);
+
+    this.selected.emit(this.selection.selected as ListItem<T>[]);
   }
 
   handleIndexChange(index: number) {
