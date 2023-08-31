@@ -8,5 +8,21 @@
       padding-left: 0;
       padding-right: 0;
     }
+
+    &__list {
+      &__item {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: 0.5em;
+        img {
+          width: 1.5em;
+          height: auto;
+        }
+      }
+
+    }
+
+    overflow: hidden;
   }
 }

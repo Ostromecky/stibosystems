@@ -1,4 +1,4 @@
-import { NgFor, NgTemplateOutlet } from '@angular/common';
+import { NgFor, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,12 +6,17 @@ import {
   EventEmitter,
   Input,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { ItemDirective } from '../public_api';
 import { ListItem } from '../types';
+import {
+  CdkVirtualScrollViewport,
+  ScrollingModule,
+} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-list',
@@ -21,22 +26,56 @@ import { ListItem } from '../types';
     NgFor,
     NgTemplateOutlet,
     MatListModule,
+    ScrollingModule,
     MatCheckboxModule,
     MatIconModule,
+    NgStyle,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent<T> {
   @Input() data!: ListItem<T>[];
+  @Input() batch = 20;
+  @Input() end = false;
 
   @Output() selected: EventEmitter<ListItem<T>[]> = new EventEmitter<
     ListItem<T>[]
   >();
+  // @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+
+  @ViewChild(CdkVirtualScrollViewport)
+  viewport!: CdkVirtualScrollViewport;
 
   @ContentChild(ItemDirective, { descendants: true })
   itemRef!: ItemDirective<T>;
 
   handleSelection(event: MatSelectionListChange) {
     console.log(event.options);
+  }
+
+  handleIndexChange(index: number) {
+    const end = this.viewport.getRenderedRange().end;
+    const total = this.viewport.getDataLength();
+    if (end === total) {
+      console.log('end of list');
+    }
+  }
+
+  trackByIdx(i: number) {
+    return i;
+  }
+
+  calculateHeight() {
+    if (this.data.length) {
+      return {
+        height:
+          this.data.length < this.batch
+            ? `${(this.data.length + 1) * 48}px`
+            // : `${this.batch * 48}px`,
+            : '480px'
+      };
+    }
+    // return { height: `${this.batch * 48}px` };
+    return { height: '480px' };
   }
 }

@@ -30,6 +30,14 @@
         }
       }
     }
+
+    cdk-virtual-scroll-viewport {
+      // height: 480px;
+
+      &::-webkit-scrollbar {
+        // display: ;
+      }
+    }
   }
 }
 

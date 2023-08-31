@@ -28,6 +28,6 @@ export class CountriesFacade {
   );
 
   private toListItem(item: CountryItem): ListItem<CountryItem> {
-    return { title: item.name, data: item };
+    return { title: item.name, data: item, avatar: item.flag };
   }
 }

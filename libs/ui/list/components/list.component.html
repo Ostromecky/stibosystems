@@ -1,12 +1,24 @@
-<mat-selection-list class="app-list" (selectionChange)="handleSelection($event)">
-  <mat-list-option
-    color="primary"
-    *ngFor="let item of data; let index = index"
-    togglePosition="before"
+<mat-selection-list
+  class="app-list"
+  (selectionChange)="handleSelection($event)"
+>
+  <cdk-virtual-scroll-viewport
+    [ngStyle]="calculateHeight()"
+    autosize
+    itemSize="48"
+    (scrolledIndexChange)="
+      handleIndexChange($event)
+    "
   >
-    <ng-container
-      [ngTemplateOutlet]="itemRef.templateRef"
-      [ngTemplateOutletContext]="{ $implicit: item, index: index }"
-    />
-  </mat-list-option>
+    <mat-list-option
+      color="primary"
+      *cdkVirtualFor="let item of data; let index = index; trackBy: trackByIdx"
+      togglePosition="before"
+    >
+      <ng-container
+        [ngTemplateOutlet]="itemRef.templateRef"
+        [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+      />
+    </mat-list-option>
+  </cdk-virtual-scroll-viewport>
 </mat-selection-list>
