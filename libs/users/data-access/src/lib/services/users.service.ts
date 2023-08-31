@@ -15,9 +15,14 @@ export class UsersService {
       .pipe(map((users) => users.map(this.toUserItem)));
   }
 
+  /**
+   * TODO - move to utils
+   * @param params 
+   * @returns 
+   */
   private toHttpParams(params: UserFilter): HttpParams {
     return Object.entries(params ?? {}).reduce((acc, [key, value]) => {
-      if (value) {
+      if (value !== undefined && value !== null && value !== '') {
         return acc.append(key, value);
       }
       return acc;

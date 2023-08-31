@@ -36,4 +36,8 @@ import { UsersFacade } from './users.facade';
 })
 export class UsersComponent {
   protected readonly _facade = inject(UsersFacade);
+
+  handlePageChange() {
+    this._facade.$page.update((value) => value + 1);
+  }
 }

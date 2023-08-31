@@ -8,4 +8,4 @@ export type User = {
 
 export type UserItem = Pick<User, 'firstName' | 'lastName' | 'avatarUrl' | 'email'>;
 
-export type UserFilter = { q: string } | null;
+export type UserFilter = { q: string, _page: number, _limit: number } | null;

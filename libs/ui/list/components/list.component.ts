@@ -37,11 +37,12 @@ export class ListComponent<T> {
   @Input() data!: ListItem<T>[];
   @Input() batch = 20;
   @Input() end = false;
+  @Input() lastLoaded = false;
 
   @Output() selected: EventEmitter<ListItem<T>[]> = new EventEmitter<
     ListItem<T>[]
   >();
-  // @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() pageChange: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild(CdkVirtualScrollViewport)
   viewport!: CdkVirtualScrollViewport;
@@ -54,10 +55,16 @@ export class ListComponent<T> {
   }
 
   handleIndexChange(index: number) {
+    if (index === 0) {
+      return;
+    }
+    if(this.lastLoaded) {
+      return;
+    }
     const end = this.viewport.getRenderedRange().end;
     const total = this.viewport.getDataLength();
     if (end === total) {
-      console.log('end of list');
+      this.pageChange.emit();
     }
   }
 
