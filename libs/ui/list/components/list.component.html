@@ -12,6 +12,8 @@
       color="primary"
       *cdkVirtualFor="let item of data; let index = index; trackBy: trackByIdx"
       togglePosition="before"
+      [value]="item"
+      [selected]="selection.isSelected(item)"
     >
       <ng-container
         [ngTemplateOutlet]="itemRef.templateRef"

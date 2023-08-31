@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 import { ItemDirective, ListComponent } from '@stibosystems/ui/list';
+import { ListItem } from '@stibosystems/ui/list/types';
+import { UserItem } from '@stibosystems/users/data-access';
 import { AvatarComponent } from '../components/avatar.component';
 import { UsersFacade } from './users.facade';
 
@@ -39,5 +41,9 @@ export class UsersComponent {
 
   handlePageChange() {
     this._facade.$page.update((value) => value + 1);
+  }
+
+  handleSelection(event: ListItem<UserItem>[]) {
+    console.log('Users selected: ', event);
   }
 }
