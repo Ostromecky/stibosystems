@@ -1,0 +1,11 @@
+<ng-container *ngIf="src; else placeholder">
+  <div class="avatar">
+    <img [ngSrc]="src" width="40" height="40"/>
+  </div>
+</ng-container>
+
+<ng-template #placeholder>
+  <div class="avatar__placeholder">
+    {{ initials }}
+  </div>
+</ng-template>

@@ -6,11 +6,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 import { ItemDirective, ListComponent } from '@stibosystems/ui/list';
-import { CountriesFacade } from './countries.facade';
+import { AvatarComponent } from '../components/avatar.component';
+import { UsersFacade } from './users.facade';
 
 @Component({
-  selector: 'app-countries',
+  selector: 'app-users',
   standalone: true,
   imports: [
     ListComponent,
@@ -21,14 +23,17 @@ import { CountriesFacade } from './countries.facade';
     MatButtonModule,
     FormsModule,
     MatSelectModule,
+    TranslocoDirective,
+    AvatarComponent,
     NgFor,
+    TranslocoPipe,
     NgIf,
   ],
+  providers: [UsersFacade],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CountriesFacade],
-  templateUrl: './countries.component.html',
-  styleUrls: ['./countries.component.scss'],
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss'],
 })
-export class CountriesComponent {
-  protected readonly _facade = inject(CountriesFacade);
+export class UsersComponent {
+  protected readonly _facade = inject(UsersFacade);
 }

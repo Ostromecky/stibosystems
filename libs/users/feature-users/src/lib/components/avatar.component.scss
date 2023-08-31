@@ -1,0 +1,22 @@
+.avatar {
+  overflow: hidden;
+
+  img {
+    object-fit: fill;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ccc;
+    color: #fff;
+  }
+
+}
