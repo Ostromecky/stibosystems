@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Country, CountryFilter, CountryItem } from '../types';
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +12,11 @@ export class CountriesService {
     const _params = this.toHttpParams(params);
     return this.http.get<Country[]>(this.URL, { params: _params }).pipe(
       map((countries) => countries.map(this.toCountryItem)),
-      map((countries) => this.removeDuplicates(countries))
+      map((countries) => this.removeDuplicates(countries)),
+      catchError((err) => {
+        console.error(err);
+        return of([]);
+      })
     );
   }
 

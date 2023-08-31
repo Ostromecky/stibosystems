@@ -3,12 +3,10 @@
   (selectionChange)="handleSelection($event)"
 >
   <cdk-virtual-scroll-viewport
+    *ngIf="data.length > 0; else empty"
     [ngStyle]="calculateHeight()"
-    autosize
     itemSize="48"
-    (scrolledIndexChange)="
-      handleIndexChange($event)
-    "
+    (scrolledIndexChange)="handleIndexChange($event)"
   >
     <mat-list-option
       color="primary"
@@ -21,4 +19,16 @@
       />
     </mat-list-option>
   </cdk-virtual-scroll-viewport>
+  <div class="app-list__loader">
+    <mat-progress-spinner
+      *ngIf="loading"
+      [diameter]="24"
+      color="primary"
+      mode="indeterminate"
+    />
+  </div>
 </mat-selection-list>
+
+<ng-template #empty>
+  <div *ngIf="!loading" class="app-list__empty">No records found!</div>
+</ng-template>

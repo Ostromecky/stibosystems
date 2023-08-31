@@ -7,25 +7,28 @@ import {
   PaymentsService,
 } from '@stibosystems/payments/data-access';
 import { ListItem } from '@stibosystems/ui/list/types';
-import { debounceTime, map, switchMap } from 'rxjs/operators';
+import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import { StatusItem } from '../types';
 
 @Injectable()
 export class PaymentsFacade {
   private readonly _paymentsService = inject(PaymentsService);
   readonly $filter = signal<PaymentStatus | null>(null);
+  readonly $loading = signal<boolean>(true);
   readonly statusList = this.toStatusList();
 
   readonly $payments = toSignal(
     toObservable(this.$filter).pipe(
       debounceTime(300),
       switchMap((filter) => {
+        this.$loading.set(true);
         const params = {
           status: filter,
         } as PaymentFilter;
         return this._paymentsService.getPayments(params);
       }),
-      map((res) => res.map(this.toListItem))
+      map((res) => res.map(this.toListItem)),
+      tap(() => this.$loading.set(false))
     ),
     { initialValue: [] }
   );

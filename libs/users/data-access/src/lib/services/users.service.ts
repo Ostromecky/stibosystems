@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { User, UserFilter, UserItem } from '../types';
 
 @Injectable({ providedIn: 'root' })
@@ -10,15 +10,19 @@ export class UsersService {
 
   getUsers(params: UserFilter): Observable<UserItem[]> {
     const _params = this.toHttpParams(params);
-    return this.http
-      .get<User[]>(this.URL, { params: _params })
-      .pipe(map((users) => users.map(this.toUserItem)));
+    return this.http.get<User[]>(this.URL, { params: _params }).pipe(
+      map((users) => users.map(this.toUserItem)),
+      catchError((err) => {
+        console.error(err);
+        return of([]);
+      })
+    );
   }
 
   /**
    * TODO - move to utils
-   * @param params 
-   * @returns 
+   * @param params
+   * @returns
    */
   private toHttpParams(params: UserFilter): HttpParams {
     return Object.entries(params ?? {}).reduce((acc, [key, value]) => {
@@ -35,7 +39,7 @@ export class UsersService {
       firstName,
       lastName,
       avatarUrl,
-      email
+      email,
     };
   }
 }

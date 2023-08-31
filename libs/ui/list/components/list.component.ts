@@ -1,4 +1,8 @@
-import { NgFor, NgStyle, NgTemplateOutlet } from '@angular/common';
+import {
+  CdkVirtualScrollViewport,
+  ScrollingModule,
+} from '@angular/cdk/scrolling';
+import { NgFor, NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,10 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { ItemDirective } from '../public_api';
 import { ListItem } from '../types';
-import {
-  CdkVirtualScrollViewport,
-  ScrollingModule,
-} from '@angular/cdk/scrolling';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-list',
@@ -28,6 +29,8 @@ import {
     MatListModule,
     ScrollingModule,
     MatCheckboxModule,
+    NgIf,
+    MatProgressSpinnerModule,
     MatIconModule,
     NgStyle,
   ],
@@ -38,6 +41,7 @@ export class ListComponent<T> {
   @Input() batch = 20;
   @Input() end = false;
   @Input() lastLoaded = false;
+  @Input() loading = false;
 
   @Output() selected: EventEmitter<ListItem<T>[]> = new EventEmitter<
     ListItem<T>[]
@@ -45,7 +49,7 @@ export class ListComponent<T> {
   @Output() pageChange: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild(CdkVirtualScrollViewport)
-  viewport!: CdkVirtualScrollViewport;
+  viewport: CdkVirtualScrollViewport | undefined;
 
   @ContentChild(ItemDirective, { descendants: true })
   itemRef!: ItemDirective<T>;
@@ -58,13 +62,18 @@ export class ListComponent<T> {
     if (index === 0) {
       return;
     }
-    if(this.lastLoaded) {
+    if (this.lastLoaded) {
       return;
     }
-    const end = this.viewport.getRenderedRange().end;
-    const total = this.viewport.getDataLength();
-    if (end === total) {
-      this.pageChange.emit();
+    if (this.viewport) {
+      const end = this.viewport.getRenderedRange().end;
+      const total = this.viewport.getDataLength();
+      if (this.loading) {
+        return;
+      }
+      if (end === total && !this.loading) {
+        this.pageChange.emit();
+      }
     }
   }
 
@@ -73,13 +82,13 @@ export class ListComponent<T> {
   }
 
   calculateHeight() {
-    if (this.data.length) {
+    if (this.data.length > 0) {
       return {
         height:
           this.data.length < this.batch
             ? `${(this.data.length + 1) * 48}px`
-            // : `${this.batch * 48}px`,
-            : '480px'
+            : // : `${this.batch * 48}px`,
+              '480px',
       };
     }
     // return { height: `${this.batch * 48}px` };

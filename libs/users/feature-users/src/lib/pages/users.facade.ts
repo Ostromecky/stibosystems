@@ -23,6 +23,7 @@ export class UsersFacade {
   readonly $filter = signal<string | null>(null);
   readonly $page = signal<number>(0);
   readonly $end = signal<boolean>(false);
+  readonly $loading = signal<boolean>(true);
   readonly limit = 20;
 
   private readonly filter$ = toObservable(this.$filter).pipe(
@@ -38,16 +39,20 @@ export class UsersFacade {
 
   readonly $users = toSignal(
     combineLatest([this.filter$, this.page$]).pipe(
+      debounceTime(0),
       concatMap(([filter, page]) => {
+        this.$loading.set(true);
         const params = {
           q: filter,
           _page: page,
           _limit: this.limit,
         } as UserFilter;
-        console.log(params);
         return this._usersService.getUsers(params);
       }),
-      tap((arr) => this.$end.set(arr.length === 0)),
+      tap((arr) => {
+        this.$loading.set(false);
+        this.$end.set(arr.length === 0)
+      }),
       map((res) => res.map(this.toListItem)),
       withLatestFrom(this.page$),
       scan(
