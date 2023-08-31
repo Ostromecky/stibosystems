@@ -1,7 +1,12 @@
+:host {
+  display: block;
+  height: 64px;
+}
+
 .toolbar {
   height: 64px;
   z-index: 1;
-  position: sticky;
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;

@@ -23,11 +23,37 @@
         overflow: hidden;
 
         img {
-          object-fit: contain;
+          object-fit: fill;
           width: 40px;
           height: 40px;
           border-radius: 50%;
         }
+      }
+    }
+
+    &__loader {
+      position: absolute;
+      bottom: 1em;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      @extend .mat-small;
+    }
+
+    cdk-virtual-scroll-viewport {
+      // height: 480px;
+
+      &::-webkit-scrollbar {
+        // display: ;
       }
     }
   }

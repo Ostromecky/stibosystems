@@ -20,6 +20,13 @@ export const appRoutes: Route[] = [
             (m) => m.COUNTRIES_ROUTES
           ),
       },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('@stibosystems/users/feature-users').then(
+            (m) => m.USERS_ROUTES
+          ),
+      },
     ],
   },
   {

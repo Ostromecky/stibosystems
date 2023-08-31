@@ -1,12 +1,34 @@
-<mat-selection-list class="app-list" (selectionChange)="handleSelection($event)">
-  <mat-list-option
-    color="primary"
-    *ngFor="let item of data; let index = index"
-    togglePosition="before"
+<mat-selection-list
+  class="app-list"
+  (selectionChange)="handleSelection($event)"
+>
+  <cdk-virtual-scroll-viewport
+    *ngIf="data.length > 0; else empty"
+    [ngStyle]="calculateHeight()"
+    itemSize="48"
+    (scrolledIndexChange)="handleIndexChange($event)"
   >
-    <ng-container
-      [ngTemplateOutlet]="itemRef.templateRef"
-      [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+    <mat-list-option
+      color="primary"
+      *cdkVirtualFor="let item of data; let index = index; trackBy: trackByIdx"
+      togglePosition="before"
+    >
+      <ng-container
+        [ngTemplateOutlet]="itemRef.templateRef"
+        [ngTemplateOutletContext]="{ $implicit: item, index: index }"
+      />
+    </mat-list-option>
+  </cdk-virtual-scroll-viewport>
+  <div class="app-list__loader">
+    <mat-progress-spinner
+      *ngIf="loading"
+      [diameter]="24"
+      color="primary"
+      mode="indeterminate"
     />
-  </mat-list-option>
+  </div>
 </mat-selection-list>
+
+<ng-template #empty>
+  <div *ngIf="!loading" class="app-list__empty">No records found!</div>
+</ng-template>

@@ -16,6 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@stibosystems/countries/data-access": [
+        "libs/countries/data-access/src/index.ts"
+      ],
       "@stibosystems/countries/feature-countries": [
         "libs/countries/feature-countries/src/index.ts"
       ],
@@ -29,8 +32,9 @@
       "@stibosystems/utils/template-outlet": [
         "libs/utils/template-outlet/src/index.ts"
       ],
-      "@stibosystems/countries/data-access": ["libs/countries/data-access/src/index.ts"],
-      "@stibosystems/utils/translate": ["libs/utils/translate/src/index.ts"]
+      "@stibosystems/utils/translate": ["libs/utils/translate/src/index.ts"],
+      "@stibosystems/users/data-access": ["libs/users/data-access/src/index.ts"],
+      "@stibosystems/users/feature-users": ["libs/users/feature-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

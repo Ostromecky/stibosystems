@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Manage Users</h1>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <mat-form-field class="users__filter">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Search users</mat-label>
+        <input
+          [ngModel]="_facade.$filter()"
+          (ngModelChange)="_facade.$filter.set($event)"
+          matInput
+        />
+      </mat-form-field>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="users__content">
+    <app-list
+      [data]="_facade.$users()"
+      [lastLoaded]="_facade.$end()"
+      [loading]="_facade.$loading()"
+      (pageChange)="handlePageChange()"
+    >
+      <ng-container
+        *appItem="let item; let idx = index; list: _facade.$users()"
+      >
+        <div class="app-list__item">
+          <div title class="users__list__item">
+            <div>{{ item.title }}</div>
+            <div class="mat-small">{{ item.data.email }}</div>
+          </div>
+
+          <app-avatar
+            [first]="item.data.firstName"
+            [last]="item.data.lastName"
+            [src]="item.avatar"
+          ></app-avatar>
+        </div>
+      </ng-container>
+    </app-list>
+  </mat-card-content>
+</mat-card>

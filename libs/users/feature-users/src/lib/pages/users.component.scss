@@ -1,5 +1,5 @@
 :host {
-  .countries {
+  .users {
     &__filter {
       width: 100%;
     }
@@ -12,9 +12,7 @@
     &__list {
       &__item {
         display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        gap: 0.5em;
+        flex-flow: column;
         img {
           width: 1.5em;
           height: auto;
